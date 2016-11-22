@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        {% block head %}
+        <title>{% block title %}{% endblock %} - StarIntel CO.</title>
+        {% endblock %}
+    </head>
+    <body>
+        <div id="logo">
+            <img src="{{ url_for('static',filename='logo.jpeg') }}" alt="Batman" height="90" width="160"></img>
+        </div>
+        <h1>StarIntel</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+        
+        <footer>
+            {% block footer %}
+                &copy; Copyright 2100
+            {% endblock %}
+            
+            <a href="{{ url_for('logout') }}">Log Out</a>
+        </footer>
+    </body>
+</html>
